@@ -1,0 +1,14 @@
+// @import "vars.scss";
+*, :after, :before {
+    box-sizing: border-box;
+}
+body{
+    background: rgba(255, 254, 251, 0.8);
+    font-family: 'Source Sans Pro';
+    font-size: 16px;
+    color: #3F3F3F;
+    margin:0;
+}
+::placeholder{
+    font-family: Source Sans Pro;
+}
