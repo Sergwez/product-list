@@ -3,7 +3,6 @@
      <div class="catalog-section__container">
         <div class="catalog-section__sidebar">
             <h2 class="catalog-section__title">Добавление товара</h2>
-
             <Add-product></Add-product>
         </div>
         <div class="catalog-section__content">
@@ -14,7 +13,15 @@
  </div>
 </template>
  <script>
-
+import {mapActions} from 'vuex'
+ export default {
+    methods: {
+        ...mapActions({firstLoad: 'products/firstLoad'}),
+    },
+    mounted(){
+        this.firstLoad()
+    }
+ }
  </script>
 <style lang="scss" scoped>
 .catalog-section{
@@ -33,7 +40,6 @@
             max-width: 1080px;
             display: flex;
             flex-direction: row;
-
         }
         @media (min-width: 1440px) {
             padding:32px;

@@ -1,6 +1,6 @@
 <template>
     <div class="product-teaser" v-if="product">
-        <div class="product-teaser__delete">
+        <div class="product-teaser__delete" @click="deleteProduct(product.id)">
             <svg-icon class="icon-delete" name="delete" />
         </div>
         <img class="product-teaser__img" :src="product.link" alt="">
@@ -10,10 +10,14 @@
     </div>
 </template>
 <script>
+import {mapActions} from 'vuex'
 export default {
-     props: {
-         product: Object
-   },
+    props: {
+        product: Object
+    },
+    methods: {
+    ...mapActions({deleteProduct: 'products/deleteProducts'}),
+    }
 }
 </script>
 <style lang="scss" scoped>

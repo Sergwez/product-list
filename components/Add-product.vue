@@ -158,7 +158,6 @@ export default {
     color: #ff8484;
     font-size: 8px;
     line-height: 10px;
-    // display: none;
   }
   &__btn {
     height: 36px;

@@ -1,15 +1,17 @@
 <template>
     <div class="products">
-        <transition-group class="products__teasers" tag="div" name="flip-list">
+        <loader v-if="showLoader"></loader>
+        <transition-group class="products__teasers" tag="div" name="flip-list" v-else>
             <Product-teaser v-for="product in allProducts" :product="product" :key="product.id"></Product-teaser>
         </transition-group>
+
     </div>
 </template>
 <script>
  import {mapGetters} from 'vuex'
  export default {
     computed:{
-        ...mapGetters({allProducts:'products/allProducts'})
+        ...mapGetters({allProducts:'products/allProducts', showLoader:'products/getLoaderStatus'})
     },
  }
 </script>

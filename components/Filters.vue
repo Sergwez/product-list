@@ -8,20 +8,39 @@
             </svg>
         </div>
         <div class="sort__select" :class="selectIsOpen ? 'sort__select_open' : ''">
-            <div class="sort__select-item" @click="currentFilter = 'По цене min'">По цене min</div>
-            <div class="sort__select-item" @click="currentFilter = 'По цене max'">По цене max</div>
-            <div class="sort__select-item" @click="currentFilter = 'По наименованию'">По наименованию</div>
+            <label class="sort__select-item" v-for="sort in allSort" :key="sort.id" @click="changeSort(sort.id)">
+                <input name="sort" type="radio" :value="sort.name" v-model="currentFilter">
+                {{sort.name}}
+            </label>
         </div>
     </div>
 </div>
 </template>
 <script>
+import {mapActions} from 'vuex'
 export default {
     data (){
         return{
-            currentFilter:"По наименованию",
-            selectIsOpen: false
+            currentFilter:"По умолчанию",
+            selectIsOpen: false,
+            allSort:[
+                {
+                    id: 0,
+                    name: "По цене min",
+                },
+                {
+                    id: 1,
+                    name: "По цене max",
+                },
+                {
+                    id: 2,
+                    name: "По наименованию",
+                }
+            ]
         }
+    },
+    methods:{
+        ...mapActions({changeSort: 'products/changeSort'})
     },
     mounted(){
         var vm = this;
@@ -41,9 +60,6 @@ export default {
         justify-content: flex-end;
         flex-grow: 1;
         margin-bottom: 16px;
-        // @media (min-width: 1080px) {
-        //     margin-bottom: 0;
-        // }
         .sort{
             position: relative;
             height: 36px;
@@ -98,6 +114,9 @@ export default {
                     }
                     &:first-of-type{
                         padding-top: 6px;
+                    }
+                    input{
+                        display: none;
                     }
                 }
             }
