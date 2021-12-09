@@ -1,11 +1,18 @@
 <template>
     <div class="products">
-
-        <div class="products__teasers">
-            <Product-teaser v-for="item in 25" :key="item"></Product-teaser>
-        </div>
+        <transition-group class="products__teasers" tag="div" name="flip-list">
+            <Product-teaser v-for="product in allProducts" :product="product" :key="product.id"></Product-teaser>
+        </transition-group>
     </div>
 </template>
+<script>
+ import {mapGetters} from 'vuex'
+ export default {
+    computed:{
+        ...mapGetters({allProducts:'products/allProducts'})
+    },
+ }
+</script>
 <style lang="scss" scoped>
 .products{
     display: flex;
@@ -27,6 +34,9 @@
         @media (min-width: 1440px) {
             grid-template-columns: repeat(3, 332px);
         }
+    }
+    .flip-list-move {
+        transition: transform .4s ease;
     }
 }
 </style>

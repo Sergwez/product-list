@@ -1,14 +1,21 @@
 <template>
-    <div class="product-teaser">
+    <div class="product-teaser" v-if="product">
         <div class="product-teaser__delete">
             <svg-icon class="icon-delete" name="delete" />
         </div>
-        <img class="product-teaser__img" src="https://zeda.io/wp-content/uploads/2021/06/Whats-the-product-life-cycle.png" alt="">
-        <h2 class="product-teaser__title">Наименование товара</h2>
-        <div class="product-teaser__text">Довольно-таки интересное описание товара в несколько строк. Довольно-таки интересное описание товара в несколько строк</div>
-        <div class="product-teaser__price">10 000 руб.</div>
+        <img class="product-teaser__img" :src="product.link" alt="">
+        <h2 class="product-teaser__title">{{product.title}}</h2>
+        <div class="product-teaser__text">{{product.description}}</div>
+        <div class="product-teaser__price">{{product.price}} руб.</div>
     </div>
 </template>
+<script>
+export default {
+     props: {
+         product: Object
+   },
+}
+</script>
 <style lang="scss" scoped>
 .product-teaser{
     display: flex;
@@ -27,8 +34,8 @@
         }
     }
     &__delete{
-        opacity: 0;
-        display: none;
+        opacity: 1;
+        display: flex;
         flex-direction: row;
         justify-content: center;
         align-items: center;
@@ -41,7 +48,10 @@
         width: 32px;
         height: 32px;
         cursor: pointer;
-
+        @media (min-width: 1080px) {
+            display: none;
+            opacity: 0;
+        }
         .icon-delete{
             stroke: #fff;
             height: 16px;

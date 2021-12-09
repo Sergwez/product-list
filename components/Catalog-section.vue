@@ -3,6 +3,7 @@
      <div class="catalog-section__container">
         <div class="catalog-section__sidebar">
             <h2 class="catalog-section__title">Добавление товара</h2>
+
             <Add-product></Add-product>
         </div>
         <div class="catalog-section__content">
@@ -12,6 +13,9 @@
      </div>
  </div>
 </template>
+ <script>
+
+ </script>
 <style lang="scss" scoped>
 .catalog-section{
     width: 100%;
